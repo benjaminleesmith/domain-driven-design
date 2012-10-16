@@ -11,13 +11,12 @@ describe BrokerageAccount do
   end
 
   describe "#get_investments" do
-    it "finds the investments for the account" do
+    it "finds the investments for the account and stock symbol" do
       brokerage_account = BrokerageAccount.create(account_number: "1234")
-      investment_1 = Investment.create(account_number: "1234")
-      investment_2 = Investment.create(account_number: "1234")
-      investment_3 = Investment.create(account_number: "1234")
+      investment_1 = Investment.create(account_number: "1234", stock_symbol: "ASDF")
+      Investment.create(account_number: "1234", stock_symbol: "QWER")
 
-      brokerage_account.get_investments.should =~ [investment_1, investment_2, investment_3]
+      brokerage_account.get_investment("ASDF").should == investment_1
     end
   end
 end

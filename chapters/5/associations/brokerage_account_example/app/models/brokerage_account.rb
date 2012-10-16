@@ -5,7 +5,7 @@ class BrokerageAccount < ActiveRecord::Base
     Customer.find_by_ssn(self.customer_ssn)
   end
 
-  def get_investments
-    Investment.find_all_by_account_number(self.account_number)
+  def get_investment(stock_symbol)
+    Investment.find_by_account_number_and_stock_symbol(self.account_number, stock_symbol)
   end
 end
